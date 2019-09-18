@@ -12,10 +12,10 @@ export class FeaturedPlaylistsService {
 
   public async getFeaturedPlaylists() {
     const response = await this._communicationService.get(environment.api_endpoint);
-    this._handleFeaturedPlaylistsResponse(response);
+    return this._handleFeaturedPlaylistsResponse(response);
   }
 
   private _handleFeaturedPlaylistsResponse(response) {
-    console.log(response);
+    return response;
   }
 }
