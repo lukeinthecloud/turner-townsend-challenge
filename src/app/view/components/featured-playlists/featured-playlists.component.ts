@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FeaturedPlaylistsService } from '../../../services/featured-playlists/featured-playlists.service';
 
 @Component({
   selector: 'app-featured-playlists',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./featured-playlists.component.scss']
 })
 export class FeaturedPlaylistsComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private _featuredPlayListsService: FeaturedPlaylistsService) {
   }
 
+  ngOnInit() {
+    this._featuredPlayListsService.getFeaturedPlaylists();
+  }
 }

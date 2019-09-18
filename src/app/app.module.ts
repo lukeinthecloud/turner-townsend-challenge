@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CommunicationService } from './services/communication/communication.service';
 import { MenuComponent } from './view/components/menu/menu.component';
 
 @NgModule({
@@ -16,7 +17,9 @@ import { MenuComponent } from './view/components/menu/menu.component';
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    CommunicationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
