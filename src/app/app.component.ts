@@ -15,7 +15,6 @@ export class AppComponent {
 
     this.http.get(environment.api_endpoint)
       .subscribe((data) => {
-        debugger;
       });
   }
 }
