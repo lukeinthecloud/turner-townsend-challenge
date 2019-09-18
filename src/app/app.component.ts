@@ -1,6 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +8,7 @@ import { environment } from '../environments/environment';
 export class AppComponent {
   title = 'turner-townsend-challenge';
 
-  constructor(private http: HttpClient) {
-    console.log(environment.api_endpoint);
+  constructor() {
 
-    this.http.get(environment.api_endpoint)
-      .subscribe((data) => {
-      });
   }
 }

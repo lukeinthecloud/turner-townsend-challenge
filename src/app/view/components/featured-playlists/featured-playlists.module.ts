@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { FeaturedPlaylistsRoutingModule } from './feature-playlists-routing.module';
 import { FeaturedPlaylistsComponent } from './featured-playlists.component';
 
 @NgModule({
@@ -7,7 +7,7 @@ import { FeaturedPlaylistsComponent } from './featured-playlists.component';
     FeaturedPlaylistsComponent
   ],
   imports: [
-    CommonModule
+    FeaturedPlaylistsRoutingModule
   ]
 })
 export class FeaturedPlaylistsModule { }
