@@ -6,8 +6,7 @@ export class CommunicationService {
   constructor(private _http: HttpClient) {
   }
 
-  public get<T>(url: string): Promise<T> {
-    const request: any = this._http.get(url).toPromise();
-    return request;
+  public get(url: string): Promise<any> {
+    return this._http.get(url).toPromise();
   }
 }
