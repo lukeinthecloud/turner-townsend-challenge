@@ -1,6 +1,5 @@
-import { IPlaylist } from './playlist.interface';
+import { IFeaturedPlayListsContent } from './featured-playlists-content.interface';
 
 export interface IFeaturedPlayLists {
-  content: Array<IPlaylist | null>;
-  name: string;
+  featuredPlaylists: IFeaturedPlayListsContent;
 }

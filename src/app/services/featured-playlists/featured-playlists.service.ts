@@ -11,20 +11,21 @@ export class FeaturedPlaylistsService {
               private _errorHandlerService: ErrorHandlerService) {
   }
 
-  public async getFeaturedPlaylists(): Promise<Array<IPlaylist> | void> {
+  public async getFeaturedPlaylists(): Promise<Array<IPlaylist> | []> {
     try {
       const response = await this._communicationService.get(environment.api_endpoint);
       return this._handleFeaturedPlaylistsResponse(response);
     } catch (error) {
       this._errorHandlerService.handle(error);
+      return [];
     }
   }
 
   private _handleFeaturedPlaylistsResponse(response: IFeaturedPlayLists): Array<IPlaylist | null> {
-    if (!response.content) {
+    if (!response.featuredPlaylists && !response.featuredPlaylists.content) {
       return [];
     }
 
-    return [...response.content];
+    return [...response.featuredPlaylists.content];
   }
 }

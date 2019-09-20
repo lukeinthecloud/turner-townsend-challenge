@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FeaturedPlaylistsService } from '../../../services/featured-playlists/featured-playlists.service';
+import { IPlaylist } from '../../../services/featured-playlists/interfaces/playlist.interface';
 
 @Component({
   selector: 'app-featured-playlists',
@@ -7,10 +8,13 @@ import { FeaturedPlaylistsService } from '../../../services/featured-playlists/f
   styleUrls: ['./featured-playlists.component.scss']
 })
 export class FeaturedPlaylistsComponent implements OnInit {
+  public featuredPlayLists: Array<IPlaylist | []>;
+
   constructor(private _featuredPlayListsService: FeaturedPlaylistsService) {
   }
 
-  ngOnInit() {
-    this._featuredPlayListsService.getFeaturedPlaylists();
+  async ngOnInit() {
+    this.featuredPlayLists = await this._featuredPlayListsService.getFeaturedPlaylists();
+    console.log(this.featuredPlayLists);
   }
 }
