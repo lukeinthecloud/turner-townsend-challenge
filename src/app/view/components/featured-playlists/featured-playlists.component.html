@@ -1,1 +1,5 @@
-<p>featured-playlists works!</p>
+<div class="row">
+  <div class="col-sm-4 mt-5" *ngFor="let playlist of featuredPlayLists">
+    <app-playlist-preview [playListInfo]="playlist"></app-playlist-preview>
+  </div>
+</div>

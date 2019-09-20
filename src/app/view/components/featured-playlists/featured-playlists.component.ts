@@ -15,6 +15,5 @@ export class FeaturedPlaylistsComponent implements OnInit {
 
   async ngOnInit() {
     this.featuredPlayLists = await this._featuredPlayListsService.getFeaturedPlaylists();
-    console.log(this.featuredPlayLists);
   }
 }
