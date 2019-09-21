@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { CommunicationService } from '../communication/communication.service';
-import { ErrorHandlerService } from '../error/error-handler.service';
-import { IFeaturedPlayLists } from './interfaces/featured-play-lists';
+import { ErrorCodes } from '../message-handler/error-codes.enum';
+import { MessageHandlerService } from '../message-handler/message-handler.service';
+import { MessageTypes } from '../message-handler/message-types.enum';
+import { IFeaturedPlayLists } from './interfaces/featured-play-lists.interface';
 import { IPlaylist } from './interfaces/playlist.interface';
 
 @Injectable()
 export class FeaturedPlaylistsService {
   constructor(private _communicationService: CommunicationService,
-              private _errorHandlerService: ErrorHandlerService) {
+              private _errorHandlerService: MessageHandlerService) {
   }
 
   public async getFeaturedPlaylists(): Promise<Array<IPlaylist> | []> {
@@ -16,7 +18,13 @@ export class FeaturedPlaylistsService {
       const response = await this._communicationService.get(environment.api_endpoint);
       return this._handleFeaturedPlaylistsResponse(response);
     } catch (error) {
-      this._errorHandlerService.handle(error);
+      const message = `Error in getFeaturedPlaylists`;
+      this._errorHandlerService.handle({
+        message,
+        error,
+        type: MessageTypes.error,
+        code: ErrorCodes.request
+      });
       return [];
     }
   }

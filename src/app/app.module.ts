@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommunicationService } from './services/communication/communication.service';
-import { ErrorHandlerService } from './services/error/error-handler.service';
+import { MessageHandlerService } from './services/message-handler/message-handler.service';
 import { MenuComponent } from './view/components/menu/menu.component';
 
 @NgModule({
@@ -22,7 +22,7 @@ import { MenuComponent } from './view/components/menu/menu.component';
   ],
   providers: [
     CommunicationService,
-    ErrorHandlerService
+    MessageHandlerService
   ],
   bootstrap: [AppComponent]
 })

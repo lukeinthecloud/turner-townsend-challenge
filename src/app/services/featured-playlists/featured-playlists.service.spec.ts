@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { CommunicationService } from '../communication/communication.service';
-import { ErrorHandlerService } from '../error/error-handler.service';
+import { MessageHandlerService } from '../message-handler/message-handler.service';
 import { FeaturedPlaylistsService } from './featured-playlists.service';
 
 describe('FeaturedPlaylistsService', () => {
@@ -16,7 +16,7 @@ describe('FeaturedPlaylistsService', () => {
 
   let _sut: FeaturedPlaylistsService;
   let communicationServiceSpy: jasmine.SpyObj<CommunicationService>;
-  let errorHandlerServiceSpy: jasmine.SpyObj<ErrorHandlerService>;
+  let errorHandlerServiceSpy: jasmine.SpyObj<MessageHandlerService>;
 
   beforeEach(() => {
     const communicationServiceGetSpy = jasmine.createSpyObj('CommunicationService', ['get']);
@@ -28,16 +28,16 @@ describe('FeaturedPlaylistsService', () => {
         {
           provide: CommunicationService, useValue: communicationServiceGetSpy
         },
-        ErrorHandlerService,
+        MessageHandlerService,
         {
-          provide: ErrorHandlerService, useValue: errorHandlerServiceHandleSpy
+          provide: MessageHandlerService, useValue: errorHandlerServiceHandleSpy
         }
       ]
     });
 
     _sut = TestBed.get(FeaturedPlaylistsService);
     communicationServiceSpy = TestBed.get(CommunicationService);
-    errorHandlerServiceSpy = TestBed.get(ErrorHandlerService);
+    errorHandlerServiceSpy = TestBed.get(MessageHandlerService);
   });
 
   it('should be created', () => {
