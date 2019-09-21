@@ -18,7 +18,7 @@ export class FeaturedPlaylistsService {
       const response = await this._communicationService.get(environment.api_endpoint);
       return this._handleFeaturedPlaylistsResponse(response);
     } catch (error) {
-      const message = `Error in getFeaturedPlaylists`;
+      const message = 'Error in getFeaturedPlaylists';
       this._errorHandlerService.handle({
         message,
         error,

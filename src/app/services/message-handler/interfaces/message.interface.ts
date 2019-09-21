@@ -1,6 +1,6 @@
 export interface IMessage {
   type: string;
   code?: number;
-  error?: Error;
+  error?: any;
   message: string;
 }
