@@ -31,9 +31,9 @@ describe('MessageHandlerComponent', () => {
   });
 
   it('should display an alert with correct message', () => {
+    fixture.detectChanges();
     const bannerElement: HTMLElement = fixture.nativeElement;
-    expect(component).toBeTruthy();
-    const alertElement = bannerElement.querySelector('.alert');
+    const alertElement = bannerElement.querySelector('div');
     expect(alertElement.textContent).toEqual('Hello World');
   });
 });
