@@ -1,4 +1,4 @@
 export enum MessageTypes {
-  error = 'error',
-  message = 'message'
+  error = 'danger',
+  message = 'info'
 }
