@@ -4,7 +4,7 @@ import { IPlaylist } from '../../../../../services/featured-playlists/interfaces
 @Component({
   selector: 'app-playlist-preview',
   templateUrl: './playlist-preview.component.html',
-  styleUrls: ['./playlist-preview.component.scss']
+styleUrls: ['./playlist-preview.component.scss']
 })
 export class PlaylistPreviewComponent implements OnInit {
   @Input() public playListInfo: IPlaylist;

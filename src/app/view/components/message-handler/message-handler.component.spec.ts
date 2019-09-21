@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { MessageHandlerService } from '../../../services/message-handler/message-handler.service';
 
 import { MessageHandlerComponent } from './message-handler.component';
@@ -18,12 +19,13 @@ describe('MessageHandlerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MessageHandlerComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
-
+    
     component.displayedErrorMessage = {
       type: 'test',
       message: 'Hello World'
     };
+
+    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -31,9 +33,9 @@ describe('MessageHandlerComponent', () => {
   });
 
   it('should display an alert with correct message', () => {
-    fixture.detectChanges();
-    const bannerElement: HTMLElement = fixture.nativeElement;
-    const alertElement = bannerElement.querySelector('div');
-    expect(alertElement.textContent).toEqual('Hello World');
+    const formElement = fixture.debugElement
+      .query(By.css('.alert'));
+
+    expect(formElement.nativeElement.textContent.trim()).toEqual('Hello World');
   });
 });
