@@ -34,7 +34,10 @@ describe('PlaylistsFilterPipe', () => {
 
   describe('transform', () => {
     it('should return an empty array if no playlists given', () => {
-      const expected = [];
+      const expected = [{
+        message: `No playlists matching test.`
+      }];
+
       const actual = _sut.transform([], 'test');
 
       expect(actual).toEqual(expected);

@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { CommunicationService } from '../communication/communication.service';
 import { MessageHandlerService } from '../message-handler/message-handler.service';
+import { MessageTypes } from '../message-handler/message-types.enum';
 import { FeaturedPlaylistsService } from './featured-playlists.service';
 
 describe('FeaturedPlaylistsService', () => {
@@ -64,10 +65,12 @@ describe('FeaturedPlaylistsService', () => {
 
     it('should send the error onto the error handler service', async () => {
       const expected = {
+        type: MessageTypes.error,
         message: 'There was an error'
       };
 
       communicationServiceSpy.get.and.returnValue(Promise.reject({
+        type: MessageTypes.error,
         message: 'There was an error'
       }));
 

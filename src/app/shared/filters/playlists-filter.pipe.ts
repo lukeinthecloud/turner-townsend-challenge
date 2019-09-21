@@ -24,7 +24,7 @@ export class PlaylistsFilterPipe implements PipeTransform {
 
     if (!filteredPlaylists.length) {
       return [{
-        message: `No playlists for ${filter}.`
+        message: `No playlists matching ${filter}.`
       }];
     }
 
