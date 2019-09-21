@@ -12,7 +12,12 @@ export class SearchComponent {
     searchInput: new FormControl('')
   });
 
-  public onSubmit() {
+  public onSubmit(): void {
+    this._updateSearchItem();
+  }
+
+  public onResetClick(): void {
+    this.searchFormGroup.controls.searchInput.patchValue('');
     this._updateSearchItem();
   }
 
