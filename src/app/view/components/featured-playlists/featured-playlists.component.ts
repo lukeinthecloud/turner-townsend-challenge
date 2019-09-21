@@ -8,12 +8,17 @@ import { IPlaylist } from '../../../services/featured-playlists/interfaces/playl
   styleUrls: ['./featured-playlists.component.scss']
 })
 export class FeaturedPlaylistsComponent implements OnInit {
-  public featuredPlayLists: Array<IPlaylist | []>;
+  public featuredPlayLists: Array<IPlaylist> | [];
+  public searchItem: string;
 
   constructor(private _featuredPlayListsService: FeaturedPlaylistsService) {
   }
 
   async ngOnInit() {
     this.featuredPlayLists = await this._featuredPlayListsService.getFeaturedPlaylists();
+  }
+
+  public onSearchItemChange(eventData): void {
+    this.searchItem = eventData;
   }
 }

@@ -45,45 +45,47 @@ describe('FeaturedPlaylistsService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should send a request for featured playlists and return featured playlist data', async () => {
-    const expected = [fakeResult];
+  describe('getFeaturedPlaylists', () => {
+    it('should send a request for featured playlists and return featured playlist data', async () => {
+      const expected = [fakeResult];
 
-    communicationServiceSpy.get.and.returnValue(Promise.resolve({
-      featuredPlaylists: {
-        content: [fakeResult],
-        name: 'Response'
-      }
-    }));
+      communicationServiceSpy.get.and.returnValue(Promise.resolve({
+        featuredPlaylists: {
+          content: [fakeResult],
+          name: 'Response'
+        }
+      }));
 
-    const actual = await _sut.getFeaturedPlaylists();
+      const actual = await _sut.getFeaturedPlaylists();
 
-    expect(communicationServiceSpy.get.calls.count()).toBe(1);
-    expect(actual).toEqual(expected);
-  });
+      expect(communicationServiceSpy.get.calls.count()).toBe(1);
+      expect(actual).toEqual(expected);
+    });
 
-  it('should send the error onto the error handler service', async () => {
-    const expected = {
-      message: 'There was an error'
-    };
+    it('should send the error onto the error handler service', async () => {
+      const expected = {
+        message: 'There was an error'
+      };
 
-    communicationServiceSpy.get.and.returnValue(Promise.reject({
-      message: 'There was an error'
-    }));
+      communicationServiceSpy.get.and.returnValue(Promise.reject({
+        message: 'There was an error'
+      }));
 
-    await _sut.getFeaturedPlaylists();
+      await _sut.getFeaturedPlaylists();
 
-    expect(errorHandlerServiceSpy.handle.calls.count()).toBe(1);
-    expect(errorHandlerServiceSpy.handle.calls.first().args[0]).toEqual(expected);
-  });
+      expect(errorHandlerServiceSpy.handle.calls.count()).toBe(1);
+      expect(errorHandlerServiceSpy.handle.calls.first().args[0]).toEqual(expected);
+    });
 
-  it('should return an empty array if there is no featuredPlaylists', async () => {
-    const expected = [];
+    it('should return an empty array if there is no featuredPlaylists', async () => {
+      const expected = [];
 
-    communicationServiceSpy.get.and.returnValue(Promise.reject({}));
+      communicationServiceSpy.get.and.returnValue(Promise.reject({}));
 
-    const actual = await _sut.getFeaturedPlaylists();
+      const actual = await _sut.getFeaturedPlaylists();
 
-    expect(communicationServiceSpy.get.calls.count()).toBe(1);
-    expect(actual).toEqual(expected);
+      expect(communicationServiceSpy.get.calls.count()).toBe(1);
+      expect(actual).toEqual(expected);
+    });
   });
 });

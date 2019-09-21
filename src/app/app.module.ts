@@ -11,8 +11,8 @@ import { MenuComponent } from './view/components/menu/menu.component';
 
 @NgModule({
   declarations: [
+    MenuComponent,
     AppComponent,
-    MenuComponent
   ],
   imports: [
     CommonModule,

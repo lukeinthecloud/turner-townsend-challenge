@@ -1,5 +1,8 @@
 <div class="row">
-  <div class="col-sm-4 mt-5" *ngFor="let playlist of featuredPlayLists">
+  <div class="col-sm-12 mt-4">
+    <app-search (searchItemEmitter)='onSearchItemChange($event)'></app-search>
+  </div>
+  <div class="col-sm-4 mt-5" *ngFor="let playlist of featuredPlayLists | playListsFilter:searchItem">
     <app-playlist-preview [playListInfo]="playlist"></app-playlist-preview>
   </div>
 </div>
