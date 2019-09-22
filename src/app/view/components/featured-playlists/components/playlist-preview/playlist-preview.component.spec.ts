@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { PlaylistPreviewComponent } from './playlist-preview.component';
 
@@ -9,7 +9,10 @@ describe('PlaylistPreviewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PlaylistPreviewComponent]
+      declarations: [PlaylistPreviewComponent],
+      imports: [
+        RouterTestingModule
+      ]
     })
       .compileComponents();
   }));
