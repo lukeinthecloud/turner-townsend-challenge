@@ -6,10 +6,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
@@ -18,10 +14,22 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Thought Process
+- The environments folder contains the API endpoint for this project, this way it is just easier to swap out. 
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+- When it comes to the routing side of the project I have split everything into modules. These
+can be considered as `containers` of a piece of frontend logic. All modules and components fall under
+the view folder. If a component is a larger piece of logic this will contain a module with its own components folder.
+This could be split in different ways (i.e have a modules folder that matches the component structure). However due to the scale
+of this project I felt that the approached used would suffice.
 
-## Further help
+- Services has a communication layer. This is just a simple abstraction layer over the Angular HTTP module. This could
+be swapped out if you wanted to use something like Axios.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- In terms of overall structure, if a component has logic this will have a matching service layer folder. This is just to
+keep a clear  separation of concerns. The components and modules are in charge of rendering the view. The services
+are in charge of providing the views with data to use or actions to execute.
+
+- The shared folder is very thin, due to project size. However this would/could be considered the utility section. The pipe
+is simply a newed up piece of logic, it is not really relevant to services and can be used in the view as well, so this is why it
+can be considered as a shared piece of logic.
