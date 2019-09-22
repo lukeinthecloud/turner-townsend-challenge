@@ -33,3 +33,11 @@ are in charge of providing the views with data to use or actions to execute.
 - The shared folder is very thin, due to project size. However this would/could be considered the utility section. The pipe
 is simply a newed up piece of logic, it is not really relevant to services and can be used in the view as well, so this is why it
 can be considered as a shared piece of logic.
+
+- I decided to use bootstrap for styling as well as SCSS (With BEM naming conventions). I have not needed
+to add too much styling as Bootstrap provides most of it out of the box. As I wanted an easy way to access flexbox and
+grid like features.
+
+- From a testing perspective under services you will notice `_sut` this is just a naming convention I have adopted from out team
+that stands for `system under test` and the preceding `_` is just to provide a level of visibility. Just like with all private methods 
+in the classes. The `_` is not needed however from a style point of view creates a clear separation for the user consuming and using the API.
