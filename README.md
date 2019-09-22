@@ -41,3 +41,13 @@ grid like features.
 - From a testing perspective under services you will notice `_sut` this is just a naming convention I have adopted from out team
 that stands for `system under test` and the preceding `_` is just to provide a level of visibility. Just like with all private methods 
 in the classes. The `_` is not needed however from a style point of view creates a clear separation for the user consuming and using the API.
+
+- With regards to the pagination. Although I did not get to it I did clearly think out how I would of approached it:
+
+    - In the featured playlists component instead of returning all playlists I would of returned an array
+    of 10 or so playlists, as an example if there were 20 playlists it would return an array with 2 items of 10 (this could be configurable by a user input).
+    
+   - This would allow me to show a previous and next button with a count of 2. When the user clicks next or index 2 I would
+   then be able to go get toe correct index from my returned results, loop over and render the data.
+    
+
