@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommunicationService } from './services/communication/communication.service';
 import { MessageHandlerService } from './services/message-handler/message-handler.service';
+import { PageErrorComponent } from './view/components/featured-playlists/components/page-error/page-error.component';
 import { MenuComponent } from './view/components/menu/menu.component';
 
 @NgModule({
   declarations: [
     MenuComponent,
-    AppComponent
+    AppComponent,
+    PageErrorComponent
   ],
   imports: [
     CommonModule,

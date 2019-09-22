@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { HomeComponent } from './view/components/home/home.component';
+import { PageErrorComponent } from './view/components/featured-playlists/components/page-error/page-error.component';
 
 const routes: Routes = [
   {
@@ -16,6 +16,7 @@ const routes: Routes = [
     path: 'playlists',
     loadChildren: () => import('./view/components/featured-playlists/featured-playlists.module').then(m => m.FeaturedPlaylistsModule)
   },
+  { path: '**', component: PageErrorComponent }
 ];
 
 @NgModule({

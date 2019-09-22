@@ -8,6 +8,7 @@ import { SearchComponent } from '../search/search.component';
 import { FeaturedPlaylistsRoutingModule } from './feature-playlists-routing.module';
 import { FeaturedPlaylistsComponent } from './featured-playlists.component';
 import { PlaylistPreviewComponent } from './components/playlist-preview/playlist-preview.component';
+import { PlaylistComponent } from './components/playlist/playlist.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { PlaylistPreviewComponent } from './components/playlist-preview/playlist
     PlaylistsFilterPipe,
     SearchComponent,
     FeaturedPlaylistsComponent,
-    PlaylistPreviewComponent
+    PlaylistPreviewComponent,
+    PlaylistComponent,
   ],
   imports: [
     CommonModule,
