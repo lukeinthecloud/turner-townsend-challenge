@@ -1,0 +1,5 @@
+@import "../../featured-playlists.component";
+
+.playlist-container {
+  @include playlist-container;
+}

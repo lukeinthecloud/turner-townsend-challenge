@@ -40,7 +40,7 @@ describe('PlaylistPreviewComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     const imageElement = compiled.querySelector('img').src;
-    const nameElement = compiled.querySelector('.playlist-container__title');
+    const nameElement = compiled.querySelector('.playlist-preview-container__title');
     const buttonElement = compiled.querySelector('.btn-primary').href;
 
     expect(imageElement).toContain('someurl.com');

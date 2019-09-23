@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CommunicationService } from '../../../services/communication/communication.service';
 import { FeaturedPlaylistsService } from '../../../services/featured-playlists/featured-playlists.service';
@@ -18,6 +18,7 @@ import { FeaturedPlaylistsRoutingModule } from './feature-playlists-routing.modu
 import { FeaturedPlaylistsComponent } from './featured-playlists.component';
 
 describe('FeaturedPlaylistsComponent', () => {
+  const playListPreviewSelectorString = '.playlist-preview-container';
   let component: FeaturedPlaylistsComponent;
   let fixture: ComponentFixture<FeaturedPlaylistsComponent>;
 
@@ -43,7 +44,8 @@ describe('FeaturedPlaylistsComponent', () => {
         FeaturedPlaylistsService,
         MessageHandlerService,
         CommunicationService
-      ]
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
   }));
@@ -52,40 +54,63 @@ describe('FeaturedPlaylistsComponent', () => {
     fixture = TestBed.createComponent(FeaturedPlaylistsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    spyOn(component, 'onSearchItemChange');
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-
-  // Note: I have done this more as an integration test as the services are already unit tested
+  // Note: This is more as an integration test as the services are already unit tested
   it('should fetch all playlists and render a list', (done) => {
-    fixture.whenStable().then(() => {
-      fixture.detectChanges();
-      const debugTaskTitle = fixture.debugElement.queryAll(By.css('.playlist-container'));
-      expect(debugTaskTitle.length).toBeGreaterThan(0);
-      done();
-    });
+    fixture
+      .whenStable()
+      .then(() => {
+        fixture.detectChanges();
+        const debugTaskTitle = fixture.debugElement.queryAll(By.css(playListPreviewSelectorString));
+        expect(debugTaskTitle.length).toBeGreaterThan(0);
+        done();
+      });
   });
 
+  it('should call onSearchItemChange with "test"', (done) => {
+    const searchComponentDebugElement = fixture.debugElement.query(By.directive(SearchComponent));
+    const formElement = searchComponentDebugElement.query(By.css('form'));
+    fixture.detectChanges();
 
-  // it('should call onSearchItemChange', (done) => {
-  //   const searchBarFixture = TestBed.createComponent(SearchComponent);
-  //   const searchBarComponent = searchBarFixture.componentInstance;
-  //
-  //   searchBarComponent.searchFormGroup.controls.searchInput.setValue('test');
-  //   const formElement = fixture.debugElement
-  //     .query(By.css('form'));
-  //
-  //   formElement.triggerEventHandler('ngSubmit', null);
-  //   fixture.detectChanges();
-  //   searchBarFixture.detectChanges();
-  //
-  //   fixture.whenStable().then(() => {
-  //     fixture.detectChanges();
-  //     console.log(component.searchItem);
-  //     done();
-  //   });
-  // });
+    searchComponentDebugElement.context.searchFormGroup.controls.searchInput.setValue('rap');
+
+    formElement.triggerEventHandler('ngSubmit', null);
+    fixture.detectChanges();
+
+    fixture
+      .whenStable()
+      .then(() => {
+        expect(component.onSearchItemChange).toHaveBeenCalledWith('rap');
+        done();
+      });
+  });
+
+  it('should call reset and return all playlists', (done) => {
+    fixture.detectChanges();
+    const searchComponentDebugElement = fixture.debugElement.query(By.directive(SearchComponent));
+    const formElement = searchComponentDebugElement.query(By.css('form'));
+    const resetButtonElement = fixture.debugElement.query(By.css('.btn-outline-warning'));
+
+    searchComponentDebugElement.context.searchFormGroup.controls.searchInput.setValue('test');
+
+    formElement.triggerEventHandler('ngSubmit', null);
+    fixture.detectChanges();
+
+    resetButtonElement.triggerEventHandler('click', null);
+    fixture.detectChanges();
+
+    fixture
+      .whenStable()
+      .then(() => {
+        fixture.detectChanges();
+        expect(component.onSearchItemChange).toHaveBeenCalledWith('');
+        done();
+      });
+  });
 });

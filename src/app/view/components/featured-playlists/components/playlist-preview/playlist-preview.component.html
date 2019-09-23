@@ -1,7 +1,7 @@
-<div *ngIf="playListInfo" class="card playlist-container mt-4">
+<div *ngIf="playListInfo" class="card playlist-preview-container mt-4">
   <img src="{{playListInfo.artwork}}" class="card-img-top" alt="Playlist Image">
   <div class="card-body">
-    <h5 class="card-title playlist-container__title">{{playListInfo.name}}</h5>
+    <h5 class="card-title playlist-preview-container__title">{{playListInfo.name}}</h5>
     <a href="{{playListInfo.url}}" class="btn btn-primary mt-2 w-100" target="_blank">View</a>
     <a routerLink="/playlists/view/{{playListInfo.id}}"
             [state]="{ data: playListInfo }"

@@ -44,10 +44,10 @@ describe('SearchComponent', () => {
 
   it('should call the emitter with nothing', () => {
     component.searchFormGroup.controls.searchInput.setValue('test');
-    const formElement = fixture.debugElement
+    const resetButtonElement = fixture.debugElement
       .query(By.css('.btn-outline-warning'));
 
-    formElement.triggerEventHandler('click', null);
+    resetButtonElement.triggerEventHandler('click', null);
 
     expect(component.searchItemEmitter.emit).toHaveBeenCalledWith('');
   });
